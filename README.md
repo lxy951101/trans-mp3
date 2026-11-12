@@ -1,6 +1,6 @@
 # 音乐批量处理器
 
-批量导入音频文件，一键转成高质量 MP3，并在每个文件尾部追加 **1 秒轻缓标记音效** —— 听感上忽略不计，却能让输出与原音频产生可被机器识别的差异。
+批量导入音频文件，一键转成高质量 MP3。支持修改比特率、采样率，增加尾音功能。
 
 技术栈：**Vue 3 + TypeScript + Electron + Vite + SCSS + pnpm**，转码与探测由内置的 ffmpeg / ffprobe 二进制完成（无需用户另装）。
 
@@ -138,20 +138,4 @@ scripts/
 
 ---
 
-## 常见问题
-
-### Windows 11 26200 / 26300（25H2、26H2）上启动即退出
-
-现象：`pnpm dev` 打印 `starting electron app...` 后立即报
-
-```
-[ELIFECYCLE] Command failed with exit code -2147483645.
-```
-
-`-2147483645` 等于 `0x80000003`（STATUS_BREAKPOINT），这是 Electron 44 在 Windows 11 新版本上的上游已知问题
-（[electron#54614](https://github.com/electron/electron/issues/54614)），与项目代码无关，进程在应用脚本执行前就结束了。
-
-本项目已默认规避：`dev` / `start` 脚本都带了 `--noSandbox`，命令行相当于追加 `--no-sandbox`。
-如果你手动运行 `electron .`，请自行加上该参数；打包后的版本若遇到同样问题，用命令行启动
-`音乐批量处理器.exe --no-sandbox` 即可。
 
