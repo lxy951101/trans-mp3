@@ -1,0 +1,11 @@
+node_modules
+out
+dist
+release
+.verify
+.acl-recovery
+.pnpm-store
+.tmp-etest
+.dsh-write-test
+*.log
+.DS_Store

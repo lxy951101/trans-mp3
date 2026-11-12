@@ -1,0 +1,45 @@
+{
+  "name": "music-tool",
+  "version": "1.0.0",
+  "description": "音乐批量处理器 —— 批量导入音频并一键输出带轻缓尾部标记音效的高品质 MP3",
+  "main": "./out/main/index.js",
+  "author": "music-tool",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "electron-vite dev --noSandbox",
+    "start": "electron-vite preview --noSandbox",
+    "build": "electron-vite build",
+    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
+    "typecheck:web": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "verify": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-pipeline.mjs",
+    "preview:ui": "vite --config scripts/preview.config.mjs",
+    "build:win": "electron-vite build && electron-builder --win --config electron-builder.yml"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "ffprobe-static": "^3.1.0",
+    "vue": "^3.5.45"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "electron": "^44.7.0",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^6.0.0",
+    "sass": "^1.108.2",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8",
+    "vue-tsc": "^3.3.14"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "electron-winstaller",
+      "esbuild",
+      "@parcel/watcher",
+      "ffmpeg-static"
+    ]
+  }
+}
